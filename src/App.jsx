@@ -33,7 +33,7 @@ function App() {
           {
             role: "system",
             content:
-              "You are a EbereGPT. You can help with graphic design tasks",
+              "Your role is software developer",
           },
           ...chats,
         ],
