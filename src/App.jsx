@@ -40,7 +40,10 @@ function App() {
       })
       .then((res) => {
         msgs.push(res.data.choices[0].message);
-        console.log(res.data.choices[0].message);
+        console.log('dimesion of res.data.choices is : ', [res.data.choices.length, res.data.choices[0].length]);
+        console.log('Index value is :', res.data.choices[0].index);
+        console.log('message is : ', res.data.choices[0].message);
+        console.log('Content of message :', res.data.choices[0].message.content);
         setChats(msgs);
         setIsTyping(false);
         scrollTo(0,1e10)
@@ -56,16 +59,19 @@ function App() {
 
       <section>
         {chats && chats.length
-          ? chats.map((chat, index) => (
+          ? chats.map((chat, index) => {
+              console.log("Chat Content:", chat.content); // Add this line to print the value to the console
+              return (
               <p key={index} className={chat.role === "user" ? "user_msg" : ""}>
-                <span>
-                  <b>{chat.role.toUpperCase()}</b>
-                </span>
-                <span>:</span>
-                <span>{chat.content}</span>
-              </p>
-            ))
-          : ""}
+            <span>
+              <b>{chat.role.toUpperCase()}</b>
+            </span>
+            <span>:</span>
+            <span>{chat.content}</span>
+          </p>
+        );
+      })
+    : ""}
       </section>
 
       <div className={isTyping ? "" : "hide"}>
