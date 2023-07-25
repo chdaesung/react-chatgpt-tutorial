@@ -40,6 +40,7 @@ function App() {
       })
       .then((res) => {
         msgs.push(res.data.choices[0].message);
+        console.log(res.data.choices[0].message);
         setChats(msgs);
         setIsTyping(false);
         scrollTo(0,1e10)
